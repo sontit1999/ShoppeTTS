@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "132716165300",
+    "firebase_url": "https://shoppetts.firebaseio.com",
+    "project_id": "shoppetts",
+    "storage_bucket": "shoppetts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132716165300:android:70ac3c596e4f8b560fffe1",
+        "android_client_info": {
+          "package_name": "com.example.shopeetts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132716165300-mr52p2f8ipp0poihgameq8jm2ruekev0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp-SpqQMKiwLL2Mysjiwfm86cCl2UUP_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132716165300-mr52p2f8ipp0poihgameq8jm2ruekev0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LoginFragment">
+
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.example.shopeetts.fragment.admin.AdminFragment"
+        android:label="adminFragment"
+        tools:layout="@layout/activity_admin" />
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.example.shopeetts.fragment.login.LoginFragment"
+        android:label="loginFragmnet"
+        tools:layout="@layout/activity_main">
+        <action
+            android:id="@+id/action_LoginFragment_to_RegisterFragment"
+            app:destination="@id/RegisterFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_adminFragment"
+            app:destination="@id/adminFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/RegisterFragment"
+        tools:layout="@layout/activity_register"
+        android:name="com.example.shopeetts.fragment.register.RegisterFragment"
+        android:label="RegisterFragment" />
+    <fragment
+        android:id="@+id/HomeFragment"
+        tools:layout="@layout/frag_home"
+        android:name="com.example.shopeetts.fragment.HomeFragment"
+        android:label="HomeFragment" />
+</navigation>

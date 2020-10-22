@@ -1,10 +1,5 @@
-package com.example.shopeetts.activity.home;
+package com.example.shopeetts;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-import com.example.shopeetts.R;
 import com.example.shopeetts.base.BaseActivity;
 import com.example.shopeetts.databinding.ActivityHomeBinding;
 

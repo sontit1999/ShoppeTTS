@@ -1,26 +1,19 @@
-package com.example.shopeetts;
+package com.example.shopeetts.fragment.login;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.shopeetts.activity.RegisterActivity;
-import com.example.shopeetts.activity.admin.AdminActivity;
-import com.example.shopeetts.activity.home.HomeActivity;
-import com.example.shopeetts.base.BaseActivity;
+import com.example.shopeetts.R;
+import com.example.shopeetts.base.BaseFragment;
 import com.example.shopeetts.databinding.ActivityMainBinding;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel> {
+public class LoginFragment extends BaseFragment<ActivityMainBinding, LoginViewModel> {
 
     @Override
-    public Class<MainViewModel> getViewmodel() {
-        return MainViewModel.class;
+    public Class<LoginViewModel> getViewmodel() {
+        return LoginViewModel.class;
     }
 
     @Override
@@ -31,7 +24,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
     @Override
     public void setBindingViewmodel() {
           binding.setViewmodel(viewmodel);
-          event();
+
+    }
+
+    @Override
+    public void ViewCreated() {
+        event();
     }
 
     private void event() {
@@ -39,18 +37,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                    getControler().navigate(R.id.action_LoginFragment_to_HomeFragment);
                 }else{
-                    Toast.makeText(MainActivity.this, "Login fail !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Login fail !", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         binding.tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                getControler().navigate(R.id.action_LoginFragment_to_RegisterFragment);
             }
         });
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +55,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
                 String sdt = binding.edtPhone.getText().toString();
                 String pass = binding.edtPass.getText().toString();
                 if(sdt.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")){
-                    Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-                    startActivity(intent);
+                    getControler().navigate(R.id.action_LoginFragment_to_adminFragment);
                 }else{
                     viewmodel.Login(sdt,pass);
                 }

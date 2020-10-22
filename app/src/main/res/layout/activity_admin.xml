@@ -6,13 +6,13 @@
     <data>
               <variable
                   name="viewmodel"
-                  type="com.example.shopeetts.activity.admin.AdminViewModel" />
+                  type="com.example.shopeetts.fragment.admin.AdminViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.admin.AdminActivity">
+        tools:context=".fragment.admin.AdminFragment">
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidlineVerrtical"
             android:orientation="vertical"

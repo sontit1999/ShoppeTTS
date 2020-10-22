@@ -1,4 +1,4 @@
-package com.example.shopeetts.activity;
+package com.example.shopeetts.fragment.register;
 
 import android.content.Context;
 import android.widget.Toast;

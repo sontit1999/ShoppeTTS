@@ -1,17 +1,16 @@
-package com.example.shopeetts.activity;
+package com.example.shopeetts.fragment.register;
 
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.shopeetts.R;
-import com.example.shopeetts.base.BaseActivity;
+import com.example.shopeetts.base.BaseFragment;
 import com.example.shopeetts.databinding.ActivityRegisterBinding;
 import com.example.shopeetts.model.User;
 
-public class RegisterActivity extends BaseActivity<ActivityRegisterBinding,RegisterViewModel> {
+public class RegisterFragment extends BaseFragment<ActivityRegisterBinding,RegisterViewModel> {
 
     @Override
     public Class<RegisterViewModel> getViewmodel() {
@@ -26,7 +25,12 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding,Regis
     @Override
     public void setBindingViewmodel() {
        binding.setViewmodel(viewmodel);
-       event();
+
+    }
+
+    @Override
+    public void ViewCreated() {
+        event();
     }
 
     private void event() {
@@ -34,7 +38,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding,Regis
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
-                    finish();
+                    getControler().navigateUp();
                 }
             }
         });
@@ -42,7 +46,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding,Regis
        binding.ivBack.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               finish();
+               getControler().popBackStack();
            }
        });
        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -53,14 +57,14 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding,Regis
                String mkAgain = binding.edtPass.getText().toString();
                String dc = binding.edtAddress.getText().toString();
                if(sdt.equals("") || mk.equals("") || mkAgain.equals("") || dc.equals("")){
-                   Toast.makeText(RegisterActivity.this, "Không được bỏ trống!", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getActivity(), "Không được bỏ trống!", Toast.LENGTH_SHORT).show();
                }else{
                    if(mk.equals(mkAgain)){
                        // đăng kí
                        User user = new User(sdt,mk,dc);
-                       viewmodel.RegisterAccount(user,RegisterActivity.this);
+                       viewmodel.RegisterAccount(user,getContext());
                    }else{
-                       Toast.makeText(RegisterActivity.this, "Mật khẩu không khớp !", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getActivity(), "Mật khẩu không khớp !", Toast.LENGTH_SHORT).show();
                    }
                }
            }

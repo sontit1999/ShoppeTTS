@@ -1,4 +1,4 @@
-package com.example.shopeetts.activity.admin;
+package com.example.shopeetts.fragment.admin;
 
 import com.example.shopeetts.base.BaseViewmodel;
 import com.example.shopeetts.model.UserDAL;

@@ -1,4 +1,4 @@
-package com.example.shopeetts.activity.home;
+package com.example.shopeetts;
 
 import com.example.shopeetts.base.BaseViewmodel;
 

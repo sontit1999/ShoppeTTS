@@ -1,16 +1,13 @@
-package com.example.shopeetts.activity.admin;
+package com.example.shopeetts.fragment.admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.shopeetts.R;
-import com.example.shopeetts.base.BaseActivity;
+import com.example.shopeetts.base.BaseFragment;
 import com.example.shopeetts.databinding.ActivityAdminBinding;
 
-public class AdminActivity extends BaseActivity<ActivityAdminBinding,AdminViewModel> {
+public class AdminFragment extends BaseFragment<ActivityAdminBinding,AdminViewModel> {
 
     @Override
     public Class<AdminViewModel> getViewmodel() {
@@ -28,11 +25,16 @@ public class AdminActivity extends BaseActivity<ActivityAdminBinding,AdminViewMo
          event();
     }
 
+    @Override
+    public void ViewCreated() {
+
+    }
+
     private void event() {
         binding.cardCusstomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AdminActivity.this, "Click customer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Click customer", Toast.LENGTH_SHORT).show();
                 viewmodel.userDAL.getListAccount();
             }
         });

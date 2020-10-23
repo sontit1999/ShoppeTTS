@@ -1,6 +1,8 @@
 package com.example.shopeetts.model;
 
-public class Cagetory {
+import java.io.Serializable;
+
+public class Cagetory implements Serializable {
     String id;
     String name;
     String LinkImage;

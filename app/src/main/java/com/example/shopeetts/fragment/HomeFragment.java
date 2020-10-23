@@ -1,20 +1,29 @@
 package com.example.shopeetts.fragment;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.shopeetts.R;
 import com.example.shopeetts.base.BaseFragment;
+import com.example.shopeetts.callback.CagetoryCallback;
+import com.example.shopeetts.callback.FlashSaleCallback;
 import com.example.shopeetts.databinding.FragHomeBinding;
 import com.example.shopeetts.model.Cagetory;
+import com.example.shopeetts.model.Product;
 import com.example.shopeetts.model.SliderItem;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> {
@@ -37,18 +46,105 @@ public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> 
     public void ViewCreated() {
           setUpSlider();
           setUpCagetory();
+          setUpFlashSale();
+          setUpProduct();
           viewmodel.getArrImageSlide().observe(this, new Observer<List<SliderItem>>() {
               @Override
               public void onChanged(List<SliderItem> sliderItems) {
                   viewmodel.adapterImage.setList(sliderItems);
+
               }
           });
           viewmodel.getArrCagetory().observe(this, new Observer<List<Cagetory>>() {
               @Override
-              public void onChanged(List<Cagetory> cagetories) {
+              public void onChanged(final List<Cagetory> cagetories) {
                   viewmodel.cagetoryAdapter.setList((ArrayList<Cagetory>) cagetories);
+                  viewmodel.cagetoryAdapter.setCallback(new CagetoryCallback() {
+                      @Override
+                      public void onCagetoryCLick(Cagetory cagetory) {
+                          Bundle bundle = new Bundle();
+                          bundle.putSerializable("type", cagetory);
+                          getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);
+                      }
+                  });
               }
           });
+          viewmodel.getArrFlashSale().observe(this, new Observer<List<Product>>() {
+              @Override
+              public void onChanged(List<Product> products) {
+                  viewmodel.flashSaleAdapter.setList((ArrayList<Product>) products);
+                  viewmodel.flashSaleAdapter.setCallback(new FlashSaleCallback() {
+                      @Override
+                      public void onCLickProduct(Product product) {
+                          Bundle bundle = new Bundle();
+                          bundle.putSerializable("product", product);
+                          getControler().navigate(R.id.action_HomeFragment_to_detailProductFragment,bundle);
+                      }
+                  });
+                  Collections.shuffle(products);
+                  viewmodel.productAdapter.setList((ArrayList<Product>) products);
+                  viewmodel.productAdapter.setCallback(new FlashSaleCallback() {
+                      @Override
+                      public void onCLickProduct(Product product) {
+                          Bundle bundle = new Bundle();
+                          bundle.putSerializable("product", product);
+                          getControler().navigate(R.id.action_HomeFragment_to_detailProductFragment,bundle);
+                      }
+                  });
+              }
+          });
+          event();
+    }
+
+    private void event() {
+           binding.tvMoreNewProduct.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   Cagetory cagetory = new Cagetory("1","Flash sale","xx");
+                   Bundle bundle = new Bundle();
+                   bundle.putSerializable("type", cagetory);
+                   getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);
+               }
+           });
+           binding.tvMoreRecomend.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   Cagetory cagetory = new Cagetory("1","Gợi ý","xx");
+                   Bundle bundle = new Bundle();
+                   bundle.putSerializable("type", cagetory);
+                   getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);
+               }
+           });
+           binding.ivSearch.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   getControler().navigate(R.id.action_HomeFragment_to_searchFragment);
+               }
+           });
+           binding.ivCart.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   getControler().navigate(R.id.action_HomeFragment_to_cardFragment);
+               }
+           });
+           binding.ivProfile.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   getControler().navigate(R.id.action_HomeFragment_to_profileFragment);
+               }
+           });
+    }
+
+    private void setUpProduct() {
+        binding.rvRecomend.setAdapter(viewmodel.productAdapter);
+        binding.rvRecomend.setHasFixedSize(true);
+        binding.rvRecomend.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false));
+    }
+
+    private void setUpFlashSale() {
+        binding.rvFlashSale.setAdapter(viewmodel.flashSaleAdapter);
+        binding.rvFlashSale.setHasFixedSize(true);
+        binding.rvFlashSale.setLayoutManager(new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false));
     }
 
     private void setUpCagetory() {

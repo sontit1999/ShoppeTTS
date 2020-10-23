@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="product"
+            type="com.example.shopeetts.model.Product" />
+        <variable
+            name="callback"
+            type="com.example.shopeetts.callback.FlashSaleCallback" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardElevation="5dp"
+        android:layout_margin="5dp"
+        android:onClick="@{()->callback.onCLickProduct(product)}"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivProduct"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                bind:imageUrl="@{product.linkImage}"
+                android:src="@drawable/iphone12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/txt_size_content_small"
+                android:textColor="@color/colorBlack"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivProduct"
+                android:text="@{product.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/txt_size_content"
+                android:textColor="@color/colorMain"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                android:text="@{product.price}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvNumberBuy"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginRight="5dp"
+                app:layout_constraintRight_toRightOf="@id/ivProduct"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                android:text="@{product.numberBuy}"
+                bind:numberSale="@{product.numberBuy}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

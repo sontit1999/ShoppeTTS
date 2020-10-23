@@ -34,5 +34,62 @@
         android:id="@+id/HomeFragment"
         tools:layout="@layout/frag_home"
         android:name="com.example.shopeetts.fragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_HomeFragment_to_cagetoryFragment"
+            app:destination="@id/cagetoryFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cagetoryFragment"
+        tools:layout="@layout/frag_cagetory"
+        android:name="com.example.shopeetts.fragment.product.CagetoryFragment"
+        android:label="CagetoryFragment" >
+        <action
+            android:id="@+id/action_cagetoryFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        tools:layout="@layout/frag_search"
+        android:name="com.example.shopeetts.fragment.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardFragment"
+        tools:layout="@layout/frag_cart"
+        android:name="com.example.shopeetts.fragment.cart.CardFragment"
+        android:label="CardFragment" >
+        <action
+            android:id="@+id/action_cardFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        tools:layout="@layout/frag_profile"
+        android:name="com.example.shopeetts.fragment.profiles.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/detailProductFragment"
+        tools:layout="@layout/frag_detail_product"
+        android:name="com.example.shopeetts.fragment.detail.DetailProductFragment"
+        android:label="DetailProductFragment" >
+        <action
+            android:id="@+id/action_detailProductFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
 </navigation>

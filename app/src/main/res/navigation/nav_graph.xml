@@ -82,7 +82,13 @@
         android:id="@+id/profileFragment"
         tools:layout="@layout/frag_profile"
         android:name="com.example.shopeetts.fragment.profiles.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_LoginFragment"
+            app:popUpTo="@id/HomeFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/LoginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailProductFragment"
         tools:layout="@layout/frag_detail_product"

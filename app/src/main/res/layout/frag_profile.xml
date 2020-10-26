@@ -7,49 +7,52 @@
             name="viewmodel"
             type="com.example.shopeetts.fragment.profiles.ProfilesViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/rvToolbar"
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/ivBack"
-                android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:tint="@color/colorMain" />
-
-            <TextView
-                android:id="@+id/tvCagetory"
-                android:textSize="@dimen/txt_size_content"
-                android:textColor="@color/colorBlack"
-                android:text="Cá nhân"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-
-        <androidx.core.widget.NestedScrollView
-            app:layout_constraintTop_toBottomOf="@id/rvToolbar"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rvToolbar"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+                    android:layout_width="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_height="40dp"
+                    app:tint="@color/colorMain" />
+                <ImageView
+                    android:id="@+id/ivChat"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_baseline_message_24"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:tint="@color/colorMain" />
+                <TextView
+                    android:id="@+id/tvCagetory"
+                    android:textSize="@dimen/txt_size_content"
+                    android:textColor="@color/colorBlack"
+                    android:text="Cá nhân"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="250dp">
-
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
@@ -85,6 +88,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <LinearLayout
                     android:orientation="horizontal"
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -207,31 +211,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:gravity="center_vertical"
-                        android:padding="10dp"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@drawable/ic_baseline_help_24"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            app:tint="@color/colorMain" />
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_marginLeft="10dp"
-                            android:textColor="@color/colorBlack"
-                            android:text="Trung tâm trợ giúp"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     app:cardElevation="3dp"
@@ -257,7 +237,36 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardElevation="3dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="5dp"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btnLogout"
+                        android:text="Đăng xuất"
+                        android:layout_margin="15dp"
+                        android:background="@color/colorMain"
+                        android:textSize="@dimen/txt_size_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--       -->
+
+<!--        <ScrollView-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rvToolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            -->
+<!--        </ScrollView>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>

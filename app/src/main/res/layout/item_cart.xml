@@ -26,7 +26,7 @@
                 android:id="@+id/ivProduct"
                 android:src="@drawable/iphone12"
                 android:layout_width="70dp"
-                bind:imageUrl="@{cart.product.linkImage}"
+                bind:imageUrl="@{cart.product.linkanh}"
                 android:layout_marginLeft="5dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +48,7 @@
             <TextView
                 android:id="@+id/tvPriceProduct"
                 android:layout_width="0dp"
-                android:text="@{cart.product.price}"
+                android:text="@{cart.product.gia}"
                 android:textColor="@color/colorMain"
                 android:textSize="@dimen/txt_size_content"
                 android:layout_height="wrap_content"

@@ -49,11 +49,11 @@ public class DetailProductFragment extends BaseFragment<FragDetailProductBinding
 
     private void binDATA() {
         if(product!=null){
-            Glide.with(getContext()).load(product.getLinkImage()).into(binding.ivProduct);
+            Glide.with(getContext()).load(product.getLinkanh()).into(binding.ivProduct);
             binding.tvNameProduct.setText(product.getName());
-            binding.tvDesciption.setText(product.getDescription());
-            binding.tvNumberBuy.setText("Đã bán " + product.getNumberBuy() );
-            binding.tvPriceProduct.setText(product.getPrice() + "vnđ");
+            binding.tvDesciption.setText(product.getMota());
+            binding.tvNumberBuy.setText("Đã bán " + product.getNumberbuy() );
+            binding.tvPriceProduct.setText(product.getGia() + "vnđ");
         }
     }
 

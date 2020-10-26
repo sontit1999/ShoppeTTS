@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 
 public class BingdingUtils {
@@ -22,6 +23,7 @@ public class BingdingUtils {
         Glide
                 .with(view.getContext())
                 .load(imageUrl)
+                .apply(new RequestOptions().override(500, 500))
                 .into(view);
 
     }
@@ -33,6 +35,11 @@ public class BingdingUtils {
     @BindingAdapter({"bind:numberSale"})
     public static void loadNumberSale(TextView view, String numberSale) {
         view.setText("Đã bán " + numberSale);
+        view.setGravity(Gravity.CENTER);
+    }
+    @BindingAdapter({"bind:Price"})
+    public static void loadPrice(TextView view, String Price) {
+        view.setText( Price + " đ");
         view.setGravity(Gravity.CENTER);
     }
     @BindingAdapter({"bind:imageAssest"})

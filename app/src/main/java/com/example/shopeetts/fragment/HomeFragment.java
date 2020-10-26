@@ -2,6 +2,7 @@ package com.example.shopeetts.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -9,6 +10,8 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.shopeetts.R;
+import com.example.shopeetts.api.RetrofitClient;
+import com.example.shopeetts.api.ShoppeService;
 import com.example.shopeetts.base.BaseFragment;
 import com.example.shopeetts.callback.CagetoryCallback;
 import com.example.shopeetts.callback.FlashSaleCallback;
@@ -25,6 +28,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> {
     @Override
@@ -48,6 +55,10 @@ public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> 
           setUpCagetory();
           setUpFlashSale();
           setUpProduct();
+
+//          // call API
+           callApiGetData();
+
           viewmodel.getArrImageSlide().observe(this, new Observer<List<SliderItem>>() {
               @Override
               public void onChanged(List<SliderItem> sliderItems) {
@@ -96,11 +107,67 @@ public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> 
           event();
     }
 
+    private void callApiGetData() {
+        ShoppeService shoppeService = RetrofitClient.getInstance(getContext()).create(ShoppeService.class);
+        Call<List<Cagetory>> call = shoppeService.getCagetory();
+        call.enqueue(new Callback<List<Cagetory>>() {
+            @Override
+            public void onResponse(Call<List<Cagetory>> call, Response<List<Cagetory>> response) {
+                viewmodel.cagetoryAdapter.setList((ArrayList<Cagetory>) response.body());
+                viewmodel.cagetoryAdapter.setCallback(new CagetoryCallback() {
+                    @Override
+                    public void onCagetoryCLick(Cagetory cagetory) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("type", cagetory);
+                        getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<Cagetory>> call, Throwable t) {
+                Toast.makeText(getActivity(), "call api fail: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        Call<List<Product>> call1 = shoppeService.getAllProduct();
+        call1.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> arrProduct = response.body();
+                viewmodel.flashSaleAdapter.setList((ArrayList<Product>) arrProduct);
+                viewmodel.flashSaleAdapter.setCallback(new FlashSaleCallback() {
+                    @Override
+                    public void onCLickProduct(Product product) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("product", product);
+                        getControler().navigate(R.id.action_HomeFragment_to_detailProductFragment,bundle);
+                    }
+                });
+                Collections.shuffle(arrProduct);
+                viewmodel.productAdapter.setList((ArrayList<Product>) arrProduct);
+                viewmodel.productAdapter.setCallback(new FlashSaleCallback() {
+                    @Override
+                    public void onCLickProduct(Product product) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("product", product);
+                        getControler().navigate(R.id.action_HomeFragment_to_detailProductFragment,bundle);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Toast.makeText(getActivity(), "call api fail: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void event() {
            binding.tvMoreNewProduct.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   Cagetory cagetory = new Cagetory("1","Flash sale","xx");
+                   Cagetory cagetory = new Cagetory("1","Flash sale","xx","xx");
                    Bundle bundle = new Bundle();
                    bundle.putSerializable("type", cagetory);
                    getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);
@@ -109,7 +176,7 @@ public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> 
            binding.tvMoreRecomend.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   Cagetory cagetory = new Cagetory("1","Gợi ý","xx");
+                   Cagetory cagetory = new Cagetory("1","Gợi ý","xx","xx");
                    Bundle bundle = new Bundle();
                    bundle.putSerializable("type", cagetory);
                    getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);

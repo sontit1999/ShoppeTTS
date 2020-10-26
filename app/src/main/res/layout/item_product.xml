@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="1:1"
-                bind:imageUrl="@{product.linkImage}"
+                bind:imageUrl="@{product.linkanh}"
                 android:src="@drawable/iphone12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,8 @@
                 android:layout_marginLeft="5dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvName"
-                android:text="@{product.price}"
+                android:text="@{product.gia}"
+                bind:Price="@{product.gia}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -62,8 +63,8 @@
                 android:layout_marginRight="5dp"
                 app:layout_constraintRight_toRightOf="@id/ivProduct"
                 app:layout_constraintTop_toBottomOf="@id/tvName"
-                android:text="@{product.numberBuy}"
-                bind:numberSale="@{product.numberBuy}"
+                android:text="@{product.numberbuy}"
+                bind:numberSale="@{product.numberbuy}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

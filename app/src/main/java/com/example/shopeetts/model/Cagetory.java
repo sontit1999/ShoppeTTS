@@ -3,40 +3,49 @@ package com.example.shopeetts.model;
 import java.io.Serializable;
 
 public class Cagetory implements Serializable {
-    String id;
-    String name;
-    String LinkImage;
-
+    String idtype;
+    String nametype;
+    String linkimg;
+    String description;
     public Cagetory() {
     }
 
-    public Cagetory(String id, String name, String linkImage) {
-        this.id = id;
-        this.name = name;
-        LinkImage = linkImage;
+    public Cagetory(String idtype, String nametype, String linkimg, String description) {
+        this.idtype = idtype;
+        this.nametype = nametype;
+        this.linkimg = linkimg;
+        this.description = description;
     }
 
-    public String getId() {
-        return id;
+    public String getIdtype() {
+        return idtype;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdtype(String idtype) {
+        this.idtype = idtype;
     }
 
-    public String getName() {
-        return name;
+    public String getNametype() {
+        return nametype;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNametype(String nametype) {
+        this.nametype = nametype;
     }
 
-    public String getLinkImage() {
-        return LinkImage;
+    public String getLinkimg() {
+        return linkimg;
     }
 
-    public void setLinkImage(String linkImage) {
-        LinkImage = linkImage;
+    public void setLinkimg(String linkimg) {
+        this.linkimg = linkimg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

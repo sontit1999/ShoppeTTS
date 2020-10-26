@@ -28,7 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
-                bind:imageUrl="@{product.linkImage}"
+                bind:imageUrl="@{product.linkanh}"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/iphone12"
@@ -44,7 +44,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivProduct"
-                android:text="@{product.price}"
+                android:text="@{product.gia}"
+                bind:Price="@{product.gia}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -53,7 +54,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Giảm\n50%"
-                bind:discount="@{product.discount}"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"

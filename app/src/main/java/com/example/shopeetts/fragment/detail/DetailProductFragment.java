@@ -5,14 +5,20 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shopeetts.R;
 import com.example.shopeetts.base.BaseFragment;
 import com.example.shopeetts.databinding.FragDetailProductBinding;
+import com.example.shopeetts.model.CommentResponse;
 import com.example.shopeetts.model.Product;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailProductFragment extends BaseFragment<FragDetailProductBinding,DetailProductViewModel> {
     Product product = null;
@@ -42,9 +48,23 @@ public class DetailProductFragment extends BaseFragment<FragDetailProductBinding
 
     @Override
     public void ViewCreated() {
+        setUpreCyclerviewComment();
         // gán data lên view
          binDATA();
          event();
+
+         viewmodel.getArrComment(getContext(),Integer.parseInt(product.getId())).observe(this, new Observer<List<CommentResponse>>() {
+             @Override
+             public void onChanged(List<CommentResponse> commentResponses) {
+                 viewmodel.commentAdapter.setList((ArrayList<CommentResponse>) commentResponses);
+             }
+         });
+    }
+
+    private void setUpreCyclerviewComment() {
+         binding.rvComment.setAdapter(viewmodel.commentAdapter);
+         binding.rvComment.setHasFixedSize(true);
+         binding.rvComment.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
     }
 
     private void binDATA() {

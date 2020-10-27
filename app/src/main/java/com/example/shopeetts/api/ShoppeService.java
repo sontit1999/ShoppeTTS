@@ -1,6 +1,7 @@
 package com.example.shopeetts.api;
 
 import com.example.shopeetts.model.Cagetory;
+import com.example.shopeetts.model.CommentResponse;
 import com.example.shopeetts.model.Product;
 import com.example.shopeetts.model.UserResponse;
 
@@ -24,6 +25,14 @@ public interface ShoppeService {
       // get san pham sale
       @GET("getProductSale.php")
       Call<List<Product>> getSaleProduct();
+
+      // get all recomend san pham
+      @GET("getAllRecomend.php")
+      Call<List<Product>> getAllRecomendProduct();
+      // get all san pham sale
+      @GET("getAllProductSale.php")
+      Call<List<Product>> getAllSaleProduct();
+
       // get all san pham theo type
       @GET("getProductByType.php")
       Call<List<Product>> getProductByType(@Query("idtype") int idtype);
@@ -33,4 +42,10 @@ public interface ShoppeService {
       // register
       @GET("register.php")
       Call<String> Register(@Query("username") String username,@Query("sdt") String sdt,@Query("password") String password,@Query("linkavatar") String linkavatar,@Query("address") String address);
+      // get all comment san pham theo id
+      @GET("getCommentProduct.php")
+      Call<List<CommentResponse>> getCommentProductByID(@Query("idproduct") int idproduct);
+      // add comment san pham
+      @GET("addComment.php")
+      Call<String> AddCommentProduct(@Query("iduser") int iduser,@Query("idproduct") int idproduct,@Query("content") String content);
 }

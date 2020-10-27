@@ -112,7 +112,7 @@ public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> 
            binding.tvMoreNewProduct.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   Cagetory cagetory = new Cagetory("1","Flash sale","xx","xx");
+                   Cagetory cagetory = new Cagetory("888","Flash sale","xx","xx");
                    Bundle bundle = new Bundle();
                    bundle.putSerializable("type", cagetory);
                    getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);
@@ -121,7 +121,7 @@ public class HomeFragment extends BaseFragment<FragHomeBinding, HomesViewModel> 
            binding.tvMoreRecomend.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   Cagetory cagetory = new Cagetory("1","Gợi ý","xx","xx");
+                   Cagetory cagetory = new Cagetory("999","Gợi ý","xx","xx");
                    Bundle bundle = new Bundle();
                    bundle.putSerializable("type", cagetory);
                    getControler().navigate(R.id.action_HomeFragment_to_cagetoryFragment,bundle);

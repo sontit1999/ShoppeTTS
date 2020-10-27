@@ -77,4 +77,8 @@ dependencies {
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+
+    // room database
+    implementation  "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor  "android.arch.persistence.room:compiler:1.0.0"
 }

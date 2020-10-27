@@ -5,4 +5,6 @@ import com.example.shopeetts.model.Cart;
 
 public interface CartCallback extends CBAdapter {
     void onCartClick(Cart cart);
+    void onIncresa(Cart cart);
+    void onDescrease(Cart cart);
 }

@@ -42,6 +42,10 @@ public class BingdingUtils {
         view.setText( Price + " đ");
         view.setGravity(Gravity.CENTER);
     }
+    @BindingAdapter({"bind:PriceCart"})
+    public static void loadPriceCart(TextView view, String PriceCart) {
+        view.setText( PriceCart + " đ");
+    }
     @BindingAdapter({"bind:imageAssest"})
     public static void loadImageAssestToview(ImageView view, String imageAssest) {
         String assetPath =   "file:///android_asset/" + imageAssest;

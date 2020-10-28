@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.shopeetts.R;
+import com.example.shopeetts.api.RetrofitClient;
+import com.example.shopeetts.api.ShoppeService;
 import com.example.shopeetts.base.BaseFragment;
 import com.example.shopeetts.callback.CartCallback;
 import com.example.shopeetts.callback.FlashSaleCallback;
@@ -20,9 +22,14 @@ import com.example.shopeetts.fragment.room.AppDatabase;
 import com.example.shopeetts.fragment.room.CartDAO;
 import com.example.shopeetts.model.Cart;
 import com.example.shopeetts.model.Product;
+import com.example.shopeetts.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CardFragment extends BaseFragment<FragCartBinding,CartViewmodel> {
     CartDAO cartDAO = null;
@@ -47,6 +54,7 @@ public class CardFragment extends BaseFragment<FragCartBinding,CartViewmodel> {
     private void initRoomDatabase() {
         AppDatabase database = Room.databaseBuilder(getContext(), AppDatabase.class, "mydb")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build();
         cartDAO = database.getCartDao();
 
@@ -137,6 +145,28 @@ public class CardFragment extends BaseFragment<FragCartBinding,CartViewmodel> {
             @Override
             public void onClick(View view) {
                 getControler().popBackStack();
+            }
+        });
+        binding.btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(Cart i : cartList){
+                    ShoppeService shoppeService = RetrofitClient.getInstance(getContext()).create(ShoppeService.class);
+                    Call<String> call = shoppeService.AddDonHang(Constant.user.getIduser(),i.getIdproduct(),i.getSoluong(),i.getSoluong() * Integer.parseInt(i.getGia()));
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            cartDAO.deleteAllCart();
+                            RefresheListCart();
+                            Toast.makeText(getActivity(), "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            Toast.makeText(getActivity(), "fail call api : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }

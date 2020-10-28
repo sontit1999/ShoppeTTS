@@ -1,5 +1,6 @@
 package com.example.shopeetts.fragment.profiles;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
@@ -57,6 +58,22 @@ public class ProfileFragment extends BaseFragment<FragProfileBinding, ProfilesVi
            @Override
            public void onClick(View view) {
                Toast.makeText(getActivity(), "Chat", Toast.LENGTH_SHORT).show();
+           }
+       });
+       binding.btnLikes.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Bundle bundle = new Bundle();
+               bundle.putInt("type",Constant.Typelike);
+               getControler().navigate(R.id.action_profileFragment_to_viewLikeFragment,bundle);
+           }
+       });
+       binding.btnViewed.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Bundle bundle = new Bundle();
+               bundle.putInt("type",Constant.TypeViewed);
+               getControler().navigate(R.id.action_profileFragment_to_viewLikeFragment,bundle);
            }
        });
     }

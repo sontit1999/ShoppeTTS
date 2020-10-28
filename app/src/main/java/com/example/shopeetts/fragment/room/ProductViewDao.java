@@ -1,6 +1,5 @@
 package com.example.shopeetts.fragment.room;
 
-import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -13,16 +12,13 @@ import java.util.List;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
-@Dao
-public interface CartDAO {
+public interface ProductViewDao {
     @Insert(onConflict = REPLACE)
-    public void insert(Cart... carts);
+    public void insert(ProductView... productViews);
     @Update
-    public void update(Cart... carts);
+    public void update(ProductView... productViews);
     @Delete
-    public void delete(Cart cart);
-    @Query("select * from Cart")
-    public List<Cart> getAllCart();
-    @Query("delete from Cart")
-    public void deleteAllCart();
+    public void delete(ProductView productView);
+    @Query("select * from ProductView")
+    public List<ProductView> getAllProductView();
 }

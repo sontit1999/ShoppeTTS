@@ -88,6 +88,9 @@
             app:popUpTo="@id/HomeFragment"
             app:popUpToInclusive="true"
             app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_viewLikeFragment"
+            app:destination="@id/viewLikeFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailProductFragment"
@@ -98,4 +101,9 @@
             android:id="@+id/action_detailProductFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/viewLikeFragment"
+        tools:layout="@layout/frag_view_like"
+        android:name="com.example.shopeetts.fragment.viewlike.ViewLikeFragment"
+        android:label="ViewLikeFragment" />
 </navigation>

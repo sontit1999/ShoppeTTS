@@ -19,6 +19,7 @@ import com.example.shopeetts.fragment.room.CartDAO;
 import com.example.shopeetts.model.Cart;
 import com.example.shopeetts.model.CommentResponse;
 import com.example.shopeetts.model.Product;
+import com.example.shopeetts.model.ProductView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -50,7 +51,6 @@ public class DetailProductFragment extends BaseFragment<FragDetailProductBinding
         if(bundle!=null){
             product = (Product) bundle.getSerializable("product");
         }
-
     }
 
     @Override
@@ -70,6 +70,7 @@ public class DetailProductFragment extends BaseFragment<FragDetailProductBinding
     private void initRoomDatabase() {
         AppDatabase database = Room.databaseBuilder(getContext(), AppDatabase.class, "mydb")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build();
         cartDAO = database.getCartDao();
 

@@ -126,6 +126,7 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/btnViewed"
                         android:orientation="vertical"
                         android:layout_width="0dp"
                         android:gravity="center"
@@ -170,6 +171,7 @@
                         android:layout_width="match_parent"
                         android:gravity="center_vertical"
                         android:padding="10dp"
+                        android:id="@+id/btnLikes"
                         android:layout_height="wrap_content">
                         <ImageView
                             android:src="@drawable/ic_baseline_favorite_24"

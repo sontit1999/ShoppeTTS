@@ -48,4 +48,7 @@ public interface ShoppeService {
       // add comment san pham
       @GET("addComment.php")
       Call<String> AddCommentProduct(@Query("iduser") int iduser,@Query("idproduct") int idproduct,@Query("content") String content);
+      // add comment san pham
+      @GET("adddonhang.php")
+      Call<String> AddDonHang(@Query("iduser") String iduser,@Query("idproduct") String idproduct,@Query("soluong") int soluong,@Query("tongtien") int tongtien);
 }
